@@ -1,0 +1,13 @@
+{ "username"     : "freddy",
+  "password"     : "fred",
+  "display_name" : "Commando Fred",
+  "first_name"   : "Fred",
+  "last_name"    : "Flintstone",
+  "age_count"    : 45,
+  "chat_partner" : "",
+  "fake_map"     : {
+    "foo" : "bank",
+    "franke" : "mitilda"
+
+  }
+}

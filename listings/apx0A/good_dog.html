@@ -1,0 +1,240 @@
+<!doctype html>
+<html>
+<head>
+  <title>Dances With Doggies</title>
+  <style>
+    body { font-family : arial, helvetica, san-serif; }
+    .dog {
+      position : relative;
+      padding  : 0 16px;
+      margin   : 0 0 12px 0;
+      border   : 2px solid #888;
+      cursor   : pointer;
+      border-radius : 8px;
+      -webkit-user-select : none;
+      box-shadow : 0 0 12px -1px #888;
+    }
+    .dog_bg {
+      position : absolute;
+      top : 0; left : 0; right : 0; bottom : 0;
+      display  : none;
+      z-index  : -1;
+      background-color : #ffff00;
+    }
+    #dog_house { max-width : 350px; }
+  </style>
+  <script type="text/javascript" src=
+    "http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js">
+  </script>
+  <script type="text/javascript">
+    var spa = (function () {
+      //---------------- BEGIN MODULE SCOPE VARIABLES --------------
+      var
+        // the top-level container
+        $topBox = null,
+
+        // dog container template
+        htmlDog =
+          '<div class="dog">'
+          + '<div class="dog_bg"></div>'
+          + '<h3>Doggy <span class="dog_name"></span></h3>'
+          + '<p>Says hello with "<span class="dog_greet"></span>".</p>'
+          + '<p>And speaks with "<span class="dog_speak"></span>".</p>'
+          + '</div>',
+
+        // doggie size list
+        sizeList   = [ 'small', 'medium', 'large' ],
+
+        // pre-declare functions and objects
+        destroyDog, checkDestroy, printGreet, printName,
+        printSpeak, showFlash, redrawDog, dogPrototype,
+        hasCreate, createObject, makeDog, initModule
+        ;
+      //----------------- END MODULE SCOPE VARIABLES ---------------
+
+      //------------------- BEGIN UTILITY METHODS ------------------
+      // Cross-browser method to set __proto__
+      //   Newer js engines (v1.8.5+) support Object.create()
+      hasCreate = !! Object.create;
+      createObject = function ( arg ){
+        if ( ! arg ) { return {}; }
+        if ( hasCreate ){ return Object.create( arg ); }
+        function obj() {};
+        obj.prototype = arg;
+        return new obj;
+      };
+      //-------------------- END UTILITY METHODS -------------------
+
+      //--------------------- BEGIN DOM METHODS --------------------
+      // functions used in dogPrototype
+      destroyDog = function (){
+        this.$div.slideUp(function(){$(this).remove();});
+      };
+
+      checkDestroy = function (){
+        this.redraw_count++;
+        if ( this.redraw_count > 4 ){
+          this.destroy_dog();
+          return false;
+        }
+        return true;
+      };
+
+      printGreet = function (){
+        this.$greet.text( this.greet_text );
+      };
+
+      printName  = function (){
+        this.$name.text( this.dog_name );
+      };
+
+      printSpeak = function (){
+        this.$speak.text( this.speak_text );
+      };
+
+      showFlash = function (){
+        this.$bg.css({opacity: 1, display:'block'})
+          .fadeOut('slow');
+      };
+
+      redrawDog = function (){
+        this.print_name();
+        this.print_greet();
+        this.print_speak();
+        this.show_flash();
+      };
+      //---------------------- END DOM METHODS ---------------------
+
+      //------------------- BEGIN PUBLIC METHODS -------------------
+
+      // prototype properties and methods of dogs.
+      // includes default values.
+      dogPrototype = {
+        body_temp_c   : 36.5,
+        dog_name      : 'Guido',
+        greet_text    : 'Grrrr',
+        speak_text    : 'I am a dog',
+        height_in_m   : 1.0,
+        leg_count     : 4,
+        check_destroy : checkDestroy,
+        destroy_dog   : destroyDog,
+        print_greet   : printGreet,
+        print_name    : printName,
+        print_speak   : printSpeak,
+        show_flash    : showFlash,
+        redraw_dog    : redrawDog
+      };
+
+      // Begin constructor /makeDog/
+      makeDog = function ( arg_map ) {
+        var dog = createObject(dogPrototype),
+          $dog_div, key_name;
+
+        // handle special-case size_index property first
+        if ( arg_map.hasOwnProperty( 'size_index' ) ){
+          dog.size_text  = sizeList[ arg_map.size_index ];
+          dog.size_index = arg_map.size_index;
+          delete arg_map.size_index;
+          delete arg_map.size_text;
+        }
+
+        // add properties provided by input
+        for ( key_name in arg_map ){
+          if ( dogPrototype.hasOwnProperty( key_name ) ) {
+            dog[ key_name ] = arg_map[ key_name ];
+          }
+        }
+
+        // populate and map DOM elements using jQuery
+        $dog_div   = $( htmlDog );
+        dog.$div   = $dog_div;
+        dog.$greet = $dog_div.find('.dog_greet');
+        dog.$name  = $dog_div.find('.dog_name');
+        dog.$speak = $dog_div.find('.dog_speak');
+        dog.$bg    = $dog_div.find('.dog_bg');
+        dog.redraw_count = 0;
+
+        // render in browser
+        $dog_div.appendTo( $topBox );
+        dog.redraw_dog();
+
+        return dog;
+      };
+      // End constructor /makeDog/
+
+      // Begin public method /initModule/
+      initModule = function ( $top_box ){
+        $topBox = $top_box;
+      };
+
+      return {
+        initModule : initModule,
+        makeDog    : makeDog
+      };
+      //------------------- END PUBLIC METHODS ---------------------
+    }());
+
+
+    // Begin test dog objects
+    $(function (){
+      var littleDog, mediumDog, bigDog;
+      spa.initModule( $('#dog_house') );
+      littleDog = spa.makeDog({
+        size_index : 0,
+        dog_name   : 'Astro',
+        greet_text : 'Pant, pant',
+        speak_text : 'woof, woof'
+      });
+
+      mediumDog = spa.makeDog({ size_index : 1 });
+
+      bigDog    = spa.makeDog({
+        size_index : 2,
+        dog_name   : 'Bart',
+        greet_text : 'Hello human',
+        speak_text : 'I think, therefore I am'
+      });
+
+      littleDog.$div.click(function (){
+        if ( littleDog && littleDog.check_destroy() ){
+          littleDog.dog_name   = 'Little Astro';
+          littleDog.greet_text = 'Rastro!';
+          littleDog.speak_text = 'yap, yap';
+          littleDog.redraw_dog();
+        }
+        else { littleDog = undefined; }
+        return false;
+      });
+
+      mediumDog.$div.click(function (){
+        if ( mediumDog && mediumDog.check_destroy() ){
+          mediumDog.dog_name   = 'Medium Fido';
+          mediumDog.greet_text = 'rarrr';
+          mediumDog.speak_text = 'bark, bark';
+          mediumDog.redraw_dog();
+        }
+        else { mediumDog = undefined; }
+        return false;
+      });
+
+      bigDog.$div.click(function (){
+        if ( bigDog && bigDog.check_destroy() ){
+          bigDog.dog_name   = 'Big Bart';
+          bigDog.greet_text = 'Did you hear me?';
+          bigDog.speak_text = 'I woof loudly, therefore I am';
+          bigDog.redraw_dog();
+        }
+        else { bigDog = undefined; }
+        return false;
+      });
+    });
+    // End test dog objects
+
+  </script>
+
+</head>
+<body>
+  <div id="dog_house"></div>
+</body>
+</html>
+

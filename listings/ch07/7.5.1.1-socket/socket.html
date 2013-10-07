@@ -1,0 +1,18 @@
+<!doctype html>
+<!-- socket.html - simple socket example -->
+<html>
+<head>
+  <script type="text/javascript"
+src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"
+  ></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    io.connect().on('message', function ( count ) {  
+      $('body').html( count );  
+    });
+  </script>
+</head>
+<body>
+  Loading...
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!doctype html>
+<!-- socket.html - dynamic JS loading example -->
+<html>
+<head>
+  <script type="text/javascript"
+src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"
+  ></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script id="script_a" src="/js/data.js"></script>
+  <script>
+    $(function () {
+      $( 'body' ).html( b );
+    });
+    io.connect('http://localhost').on( 'script', function ( path ) {
+      $( '#script_a' ).remove();
+      $( 'head' ).append(
+        '<script id="script_a" src="'
+        + path +
+        '"></scr' + 'ipt>'
+      );
+      $( 'body' ).html( b );
+    });
+  </script>
+</head>
+<body>
+  Loading...
+</body>
+</html>

@@ -1,0 +1,18 @@
+## Create
+wget http://localhost:3000/user/create \
+  --header='content-type: application/json' \
+  --post-data='{"css_map":{"color":"#ddd"},"name":"Fred"}'\
+  -O -
+
+## Read
+wget http://localhost:3000/user/read/518841488ef45a4176000001 -O -
+
+## Update
+wget http://localhost:3000/user/update/518841488ef45a4176000001 \
+  --header='content-type: application/json' \
+  --post-data='{"css_map":{"color":"#fff"},"name":"Fred"}'\
+  -O -
+
+## Delete
+wget http://localhost:3000/user/delete/518841488ef45a4176000001 -O -
+

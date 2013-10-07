@@ -1,0 +1,15 @@
+ls -al |gawk '{ print $9,$11 }' \
+  | grep -v '^\.'| grep -v '^\s*$' |egrep -v '^fixer.src$' \
+  | while read l;
+    do b=$(echo $l |cut -f1 -d' '); t=$(echo $l |cut -f2);
+      if ( echo $t |grep -q "base-6.7" ); then 
+        t="../../../base-8.6.5/public/js/$b";
+      elif ( echo $t |grep -q "c.1" ); then
+        t="../../../c.1/public/js/$b";
+      elif ( echo $t |grep -q "c.4.1" ); then
+        t="../../../c.4.1/public/js/$b";
+      else 
+        continue;
+      fi;
+      rm $b; ln -s $t;
+    done

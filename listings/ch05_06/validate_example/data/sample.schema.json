@@ -1,0 +1,40 @@
+{ "type" : "object",
+  "additionalProperties" : true,
+  "properties" : {
+    "username" : {
+      "type"       : "string",
+      "required"   : true,
+      "pattern"    : "^[A-Za-z0-9_-]{6,15}",
+
+      "label_text" : "Username",
+      "info_text"  : "Pick a username to login",
+      "notes_text" : "this is a long description",
+      "doc_uri"    : "http://... online help (optional)",
+      "help_msg"   : "should be 6-15 characters long and contain only letters, numbers, underscores, or dashes",
+      "priority_index" : 90
+    },
+    "password" : {
+      "type"       : "string",
+      "required"   : true,
+      "pattern"    : "^[A-Za-z0-9_-]{6,15}",
+
+      "label_text" : "Password",
+      "help_msg"   : "should be 6-15 characters long and contain only letters, numbers, underscores, or dashes",
+      "priority_index" : 80
+    },
+    "fake_map" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "help_msg" : "the only allowed property is foo",
+      "properties" : {
+        "foo" : {
+          "type" : "string",
+          "enum" : [ "bing"],
+
+          "help_msg" : "'bing' is the only reasonable choice"
+        }
+      },
+      "priority_index" : 70
+    }
+  }
+}

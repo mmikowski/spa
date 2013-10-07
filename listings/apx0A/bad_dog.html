@@ -1,0 +1,239 @@
+<!doctype html>
+<html>
+<head>
+  <title>Dances With Doggies</title>
+  <style>
+    body { font-family: arial, helvetica, san-serif; }
+    .tip {
+      position: relative;
+      padding: 0 16px;
+      margin: 0 0 12px 0;
+      border: 2px solid #888;
+      cursor: pointer;
+      border-radius: 8px;
+      -webkit-user-select: none;
+      box-shadow: 0 0 12px -1px #888;
+    }
+    .color {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      display: none;
+      z-index: -1;
+      background-color: #ffff00;
+    }
+    #tipper { max-width: 350px; }
+  </style>
+  <script type="text/javascript" src=
+    "http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js">
+  </script>
+  <script type="text/javascript">
+    var spa = (function () {
+      //---------------- BEGIN MODULE SCOPE VARIABLES --------------
+      var
+        // the top-level container
+        mydiv = null,
+
+        // dog container template
+        div =
+          '<div class="tip">'
+          + '<div class="color"></div>'
+          + '<h3>Doggy <span class="name"></span></h3>'
+          + '<p>Says hello with "<span class="hello"></span>".</p>'
+          + '<p>And speaks with "<span class="speech"></span>".</p>'
+          + '</div>',
+
+        // doggie size list
+        sizes   = [ 'small', 'medium', 'large' ],
+
+        // pre-declare functions and objects
+        destroy, check, greet_people, say_something,
+        speak, flash, render, doggy,
+        creatable, create, Dog, begin;
+      //----------------- END MODULE SCOPE VARIABLES ---------------
+
+      //------------------- BEGIN UTILITY METHODS ------------------
+      // Cross-browser method to set __proto__
+      //   Newer js engines (v1.8.5+) support Object.create()
+      creatable = !! Object.create;
+      create = function ( arg ){
+        if ( ! arg ) { return {}; }
+        if ( creatable ){ return Object.create( arg ); }
+        function obj() {};
+        obj.prototype = arg;
+        return new obj;
+      };
+      //-------------------- END UTILITY METHODS -------------------
+
+      //--------------------- BEGIN DOM METHODS --------------------
+      // functions used in doggy
+      destroy = function (){
+        this.spot.slideUp(function(){$(this).remove();});
+      };
+
+      check = function (){
+        this.redraws++;
+        if ( this.redraws > 4 ){
+          this.remove();
+          return false;
+        }
+        return true;
+      };
+
+      greet_people = function (){
+        this.span1.text( this.greeting );
+      };
+
+      say_something  = function (){
+        this.span2.text( this.name );
+      };
+
+      speak = function (){
+        this.span3.text( this.speech );
+      };
+
+      flash = function (){
+        this.colorme.css({opacity: 1, display:'block'})
+          .fadeOut('slow');
+      };
+
+      render = function (){
+        this.say_something();
+        this.greet_people();
+        this.speak_to_us();
+        this.colorify();
+      };
+      //---------------------- END DOM METHODS ---------------------
+
+      //------------------- BEGIN PUBLIC METHODS -------------------
+
+      // prototype properties and methods of dogs.
+      // includes default values.
+      doggy = {
+        temperature: 36.5,
+        name: 'Guido',
+        greeting: 'Grrrr',
+        speech: 'I am a dog',
+        height: 1.0,
+        legs: 4,
+        ok: check,
+        remove: destroy,
+        greet_people: greet_people,
+        say_something: say_something,
+        speak_to_us: speak,
+        colorify: flash,
+        show: render
+      };
+
+      // Begin constructor /Dog/
+      Dog = function ( arg_map ) {
+        var dog = create(doggy),
+          spot, key_name;
+
+        // handle special-case size property first
+        if ( arg_map.hasOwnProperty( 'size' ) ){
+          dog.size_indicator  = sizes[ arg_map.size ];
+          dog.size = arg_map.size;
+          delete arg_map.size;
+          delete arg_map.size_indicator;
+      }
+
+        // add properties provided by input
+        for ( key_name in arg_map ){
+          if ( doggy.hasOwnProperty( key_name ) ) {
+            dog[ key_name ] = arg_map[ key_name ];
+          }
+        }
+
+        // populate and map DOM spotents using jQuery
+        spot = $( div );
+        dog.spot = spot;
+        dog.span1 = spot.find('.speech');
+        dog.span2 = spot.find('.name');
+        dog.span3 = spot.find('.hello');
+        dog.colorme = spot.find('.color');
+        dog.redraws = 0;
+
+        // render in browser
+        spot.appendTo(mydiv);
+        dog.show();
+
+        return dog;
+      };
+      // End constructor /Dog/
+
+      // Begin public method /begin/
+      begin = function ( thebox ){
+        mydiv = thebox;
+      };
+
+      return {
+        start:begin,
+        woof :Dog
+      };
+      //------------------- END PUBLIC METHODS ---------------------
+    }());
+
+
+    // Begin test dog objects
+    $(function (){
+      var canine1, canine2, canine3;
+      spa.start( $('#tipper') );
+      canine1 = spa.woof({
+        size:0,
+        name:'Astro',
+        greeting:'Pant, pant',
+        speech:'woof, woof'
+      });
+
+      canine2 = spa.woof({ size : 1 });
+
+      canine3    = spa.woof({
+        size:2,
+        name:'Bart',
+        greeting:'Hello human',
+        speech:'I think, therefore I am'
+      });
+
+      canine1.spot.click(function (){
+        if ( canine1 && canine1.ok() ){
+          canine1.name = 'Little Astro';
+          canine1.greeting = 'Rastro!';
+          canine1.speech = 'yap, yap';
+          canine1.show();
+        }
+        else { canine1 = undefined; }
+        return false;
+      });
+
+      canine2.spot.click(function (){
+        if ( canine2 && canine2.ok() ){
+          canine2.name = 'Medium Fido';
+          canine2.greeting = 'rarrr';
+          canine2.speech = 'bark, bark';
+          canine2.show();
+        }
+        else { canine2 = undefined; }
+        return false;
+      });
+
+      canine3.spot.click(function (){
+        if ( canine3 && canine3.ok() ){
+          canine3.name = 'Big Bart';
+          canine3.greeting = 'Did you hear me?';
+          canine3.speech = 'I woof loudly, therefore I am';
+          canine3.show();
+        }
+        else { canine3 = undefined; }
+        return false;
+      });
+    });
+    // End test dog objects
+
+  </script>
+
+</head>
+<body>
+  <div id="tipper"></div>
+</body>
+</html>
+
