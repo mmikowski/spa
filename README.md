@@ -3,20 +3,13 @@
 These are the resources discussed in the book 
 **Single Page Web Applications - JavaScript end-to-end**.
 
-### Source Code
+- **Source Code** : The `/listings` directory contains all the source code
+from the book, along with a few extras.
 
-The **listings** directory contains all the source code
-from the book - and a few extras!
-
-### Quick Reference
-
-The quick-reference cheat-sheet is a condensation of 
+- **Quick Reference** : The quick-reference cheat-sheet is a condensation of 
 **Appendix A - Code standards**.
 
-## jQuery Plugins
-
-If you are looking jQuery plugins, you may look at my other public
-GitHub repositories.  A quick list can be found
+- **jQuery Plugins** : If you are looking jQuery plugins, a quick list can be found
 [on the plugin site](http://plugins.jquery.com/?s=mikowskihttp://plugins.jquery.com/?s=mikowski).
 
 # Collaborate
