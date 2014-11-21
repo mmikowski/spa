@@ -38,13 +38,15 @@ other locations such as [USF](http://www.usfca.edu/),
 JavaScript](http://www.manning.com/poweredbyjavascript/).
 
 
-- SPA overview : 2012-10-15\_js\_for\_spas.pdf
-- Managing Complexity : 2013-04-02-the\_fog\_of\_spa.pdf
+- SPA Best Practice: 2012-10-15\_js\_for\_spas.pdf
+- Managing Complexity: 2013-04-02-the\_fog\_of\_spa.pdf
 - Testing SPAs: 2013-10-22-make\_it\_rock.pdf
 - Dynamic CSS creation with JS: 2014-09-17\_JSCSS.pdf
 
-A few videos can be found on You-Tube.  [Make your Spas
-Rock](https://www.youtube.com/watch?v=aoH0J6lL2w0) shows testing techniques.
+A few videos can be found on You-Tube.
+
+- [SPA Best Practice](https://www.youtube.com/watch?v=OrIFaWJ9Glo)
+- [Make your Spas Rock](https://www.youtube.com/watch?v=aoH0J6lL2w0)
 
 
 ### Revisions
