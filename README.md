@@ -28,9 +28,27 @@ If you want something improved, please file a bug.
 
 I hope to post the full standards here in the near future so that
 they may be continually updated by the community.
-This is pending approval by Manning and my co-author.
+
+### Slides
+
+The slides directory holds slides for some of my public presentations.  All of these
+have been presented at [HTML5DevConf](http://html5devconf.com/) and various
+other locations such as [USF](http://www.usfca.edu/), 
+[developer week](http://developerweek.com/), and [Powered by
+JavaScript](http://www.manning.com/poweredbyjavascript/).
+
+
+- SPA overview : 2012-10-15\_js\_for\_spas.pdf
+- Managing Complexity : 2013-04-02-the\_fog\_of\_spa.pdf
+- Testing SPAs: 2013-10-22-make\_it\_rock.pdf
+- Dynamic CSS creation with JS: 2014-09-17\_JSCSS.pdf
+
+A few videos can be found on You-Tube.  [Make your Spas
+Rock](https://www.youtube.com/watch?v=aoH0J6lL2w0) shows testing techniques.
+
 
 ### Revisions
 
-- 2013-04-26 Michael S. Mikowski : Origin
+- 2014-11-24 Michael S. Mikowski : Added slides
 - 2013-10-04 Michael S. Mikowski : Added listings
+- 2013-04-26 Michael S. Mikowski : Origin

@@ -1,0 +1,30 @@
+Make more inclusive - "we can" instead of "Qualaroo"
+
+Why should I care?
+- "I used SaSS once and it killed my dog" (Louis, Manning reviewer)
+-  Island of logic vs. JS-CSS
+-  Do the impossible - create a personalized stylesheet
+   based on the site, page, browser, device, orientation, and heartbeat.
+   ( Just joking about the heartbeat -- but we could! )
+
+
+Bring hook slide from the bottom...
+-----------------------------------
+Show click through example FIRST
+Show another practical example SECOND
+THEN show qualaroo
+  - Show examples of different surveys
+    (zoomed in on phone, zoomed out, overlay survey, regular survey, etc)
+  - Create simple example page to share (MichaelMikowski.com/survey)
+  - Put URL on the slide on the slide 
+
+"We spent months developing this technique at Qualaroo before
+sharing this with the world."
+
+Rename stylesheet 1 and stylesheet 2
+
+Why create bloated CSS?
+
+Example cascade - software advantage example
+Site - Page - Browser - Device - Orientation - Heartbeat
+App - Survey - Page - Element
