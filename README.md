@@ -1,5 +1,4 @@
-# Purpose
-
+# SPA Resources
 These are the resources discussed in the book 
 **Single Page Web Applications - JavaScript end-to-end**.
 
@@ -12,10 +11,7 @@ from the book, along with a few extras.
 - **jQuery Plugins** : If you are looking jQuery plugins, a quick list can be found
 [on the plugin site](http://plugins.jquery.com/?s=mikowskihttp://plugins.jquery.com/?s=mikowski).
 
-# Collaborate
-
-### Listings
-
+## Listings
 The listings are provided for reference and collaboration.
 You are welcome to create a fork. If you use substantially
 the same work in a public project, we would very much appreciate
@@ -24,13 +20,11 @@ attribution.
 If you improve something, please share by sending a pull request.
 If you want something improved, please file a bug.
 
-### Standards
-
+## Standards
 I hope to post the full standards here in the near future so that
 they may be continually updated by the community.
 
-### Slides
-
+## Slides
 The slides directory holds slides for some of my public presentations.  All of these
 have been presented at [HTML5DevConf](http://html5devconf.com/) and various
 other locations such as [USF](http://www.usfca.edu/), 
@@ -49,8 +43,7 @@ A few videos can be found on You-Tube.
 - [Make your Spas Rock](https://www.youtube.com/watch?v=aoH0J6lL2w0)
 
 
-### Revisions
-
+## Revisions
 - 2014-11-24 Michael S. Mikowski : Added slides
 - 2013-10-04 Michael S. Mikowski : Added listings
 - 2013-04-26 Michael S. Mikowski : Origin
