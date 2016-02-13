@@ -14,6 +14,8 @@
 /*global $, spa */
 
 // third-party modules and globals
+global.window = require("jsdom").jsdom().parentWindow;
+  // global.window for jquery: see https://github.com/mmikowski/spa/issues/1
 global.jQuery = require( 'jquery' );
 global.TAFFY  = require( './js/jq/taffydb-2.6.2.js' ).taffy;
 global.$      = global.jQuery;
