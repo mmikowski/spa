@@ -21,8 +21,8 @@ If you improve something, please share by sending a pull request.
 If you want something improved, please file a bug.
 
 ## Standards
-I hope to post the full standards here in the near future so that
-they may be continually updated by the community.
+I have posted the code standards here so they may be updated by the
+community. Last revision: 2016-11-10.
 
 ## Slides
 The slides directory holds slides for some of my public presentations.  All of these
@@ -44,6 +44,7 @@ A few videos can be found on You-Tube.
 
 
 ## Revisions
-- 2014-11-24 Michael S. Mikowski : Added slides
-- 2013-10-04 Michael S. Mikowski : Added listings
-- 2013-04-26 Michael S. Mikowski : Origin
+- 2016-11-10 Various update to this date on latest code standards
+- 2014-11-24 Added slides
+- 2013-10-04 Added listings
+- 2013-04-26 Origin
