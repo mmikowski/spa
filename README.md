@@ -41,9 +41,10 @@ A few videos can be found on You-Tube.
 
 - [SPA Best Practice](https://www.youtube.com/watch?v=OrIFaWJ9Glo)
 - [Make your Spas Rock](https://www.youtube.com/watch?v=aoH0J6lL2w0)
-
+- [Dump {less} and Sass with Dynamic CSS](https://www.youtube.com/watch?v=rnkMjzhxw4s)
 
 ## Revisions
+- 2017-05-16 Added video, updated codes standards
 - 2016-11-10 Various update to this date on latest code standards
 - 2014-11-24 Added slides
 - 2013-10-04 Added listings
